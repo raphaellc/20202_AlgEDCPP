@@ -84,10 +84,18 @@ int Lista::quantidadeElementos()
 
 int Lista::obterPrimeiroElemento()
 {
-	return 0;
+	if (inicio_lista != nullptr)
+		return inicio_lista->getDado();
+	return -1;
 }
 
 int Lista::obterUltimoElemento()
 {
-	return 0;
+	if (inicio_lista != nullptr) {
+		No* aux = inicio_lista;
+		while (aux->getProximo() != nullptr)
+			aux = aux->getProximo();
+		return aux->getDado();
+	}
+	return -1;
 }
