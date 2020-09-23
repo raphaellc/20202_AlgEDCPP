@@ -6,8 +6,8 @@ public:
 	Lista();
 	~Lista();
 	void inserirLista(int elemento);
-	void removerLista();
-	int buscarLista(int pos); 
+	void removerUltimoElemento();
+	int buscarElementoPos(int pos); 
 	bool listaVazia();
 	void percorrerLista(); //vai percorrer todos elementos da lista
 	int quantidadeElementos(); //devolve quantos nos tem na lista
@@ -17,5 +17,6 @@ public:
 private:
 	
 	No* inicio_lista;
+	int qtd_elementos;
 	
 };
