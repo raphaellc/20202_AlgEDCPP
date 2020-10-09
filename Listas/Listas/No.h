@@ -1,18 +1,59 @@
 #pragma once
+template <class D>
 class No
 {
 public:
-	No() { proximoNo = nullptr; };
+	No() { proximoNo = nullptr; noAnterior = nullptr; };
 	~No() {};
 	
 	//Insira um metodo aqui
-	int getDado();
-	void setDado(int d); //O que faz esse método. 
+	D getDado();
+	void setDado(D d); //O que faz esse método. 
 	//Insira outro metodo aqui
-	No * getProximo();
-	void setProximo(No * prox);
+	No<D> * getProximo();
+	void setProximo(No<D> * prox);
+	void setAnterior(No<D> * _noAnt);
+	No<D> * getAnterior();
+	//A <= B
+	bool operator<=(No* na)
+	{
+		return this->dado <= na->getDado();
+	}
+	//A.<=(B)
+	
 private:
-	int dado = 0;
+	D dado;
 	No * proximoNo;
+	No * noAnterior;
 };
 
+template <class D>
+D No<D>::getDado()
+{
+	return dado;
+}
+template <class D>
+void No<D>::setDado(D d)
+{
+	dado = d;
+}
+template <class D>
+No<D> * No<D>::getProximo()
+{
+	return proximoNo;
+}
+template<class D>
+inline void No<D>::setAnterior(No<D>* _noAnt)
+{
+	noAnterior = _noAnt;
+}
+template<class D>
+inline No<D>* No<D>::getAnterior()
+{
+	return noAnterior;
+}
+template <class D>
+void No<D>::setProximo(No<D>* prox)
+{
+	proximoNo = prox;
+}

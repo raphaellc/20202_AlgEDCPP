@@ -38,6 +38,7 @@ void Lista::removerUltimoElemento()
 	if (inicio_lista != nullptr) {
 		No* aux = inicio_lista;
 		No* aux_ant = inicio_lista;
+		
 		while (aux->getProximo() != nullptr) {
 			aux_ant = aux;
 			aux = aux->getProximo();

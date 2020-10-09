@@ -1,12 +1,22 @@
 #include "Lista.h"
 #include <iostream>
+#include <list>
 void main() {
-
-	Lista * minha_lista = new Lista;
+	std::list<int> * ml = new std::list<int>;
+	ml->push_front(19);
+	ml->push_back(19);
+	ml->back();
+	ml->front();
+	ml->size();
+	ml->pop_back();
+	ml->pop_front();
+	Lista<char> * minha_lista = new Lista<char>;
+	Lista<char> * chars = new Lista<char>;
+		
 	minha_lista->inserirLista(10);
 	minha_lista->inserirLista(11);
-	minha_lista->inserirLista(12);
-
+	minha_lista->inserirLista(14);
+	minha_lista->inserirLista(-1);
 	std::cout << minha_lista->quantidadeElementos() << std::endl;
 	
 	minha_lista->removerUltimoElemento();
