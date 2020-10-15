@@ -1,6 +1,6 @@
 #pragma once
 #include "Container.h"
-#include "ListaSE.h"
+
 
 class ListaGO
 {
