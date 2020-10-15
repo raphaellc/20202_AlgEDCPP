@@ -115,6 +115,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Container.h" />
+    <ClInclude Include="ListaGO.h" />
+    <ClInclude Include="ListaSE.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Container.cpp" />
+    <ClCompile Include="jogo.cpp" />
+    <ClCompile Include="ListaGO.cpp" />
+    <ClCompile Include="ListaSE.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
