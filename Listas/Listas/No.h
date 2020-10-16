@@ -3,11 +3,11 @@ template <class D>
 class No
 {
 public:
-	No() { proximoNo = nullptr; noAnterior = nullptr; };
+	No() { proximoNo = nullptr; noAnterior = nullptr; dado = nullptr; };
 	~No() {};
 	
 	//Insira um metodo aqui
-	D getDado();
+	D * getDado();
 	void setDado(D d); //O que faz esse método. 
 	//Insira outro metodo aqui
 	No<D> * getProximo();
@@ -22,7 +22,7 @@ public:
 	//A.<=(B)
 	
 private:
-	D dado;
+	D * dado;
 	No * proximoNo;
 	No * noAnterior;
 };

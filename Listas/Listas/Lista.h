@@ -6,17 +6,18 @@ class Lista
 public: 
 	Lista();
 	~Lista();
-	void inserirLista(tipoElemento elemento);
+	void inserirLista(tipoElemento * elemento);
 	void removerUltimoElemento();
-	tipoElemento buscarElementoPos(int pos);
+	tipoElemento * buscarElementoPos(int pos);
+	tipoElemento * buscarID(int id);
 	bool listaVazia();
 	void percorrerLista(); //vai percorrer todos elementos da lista
 	int quantidadeElementos(); //devolve quantos nos tem na lista
-	tipoElemento obterPrimeiroElemento(); //Devolve o dado do primeiro no da lista
-	tipoElemento obterUltimoElemento(); //Devolve o dado do ultimo elemento
+	tipoElemento * obterPrimeiroElemento(); //Devolve o dado do primeiro no da lista
+	tipoElemento * obterUltimoElemento(); //Devolve o dado do ultimo elemento
 
 private:
-	
+	tipoElemento * buscar(int id, No<tipoElemento> * _no);
 	No<tipoElemento>* inicio_lista;
 	No<tipoElemento>* final_lista;
 	int qtd_elementos;
@@ -35,7 +36,7 @@ Lista<tipoElemento>::~Lista()
 {
 }
 template <typename tipoElemento>
-void Lista<tipoElemento>::inserirLista(tipoElemento elemento)
+void Lista<tipoElemento>::inserirLista(tipoElemento * elemento)
 {
 	//Define o nó e insere o elemento no nó
 	//encapsulda o dado no nó
@@ -78,7 +79,7 @@ void Lista<tipoElemento>::removerUltimoElemento()
 	qtd_elementos--;
 }
 template <typename tipoElemento>
-tipoElemento Lista<tipoElemento>::buscarElementoPos(int pos)
+tipoElemento * Lista<tipoElemento>::buscarElementoPos(int pos)
 {
 	if (inicio_lista != nullptr && (qtd_elementos - 1) >= pos) {
 		int indice = 0;
@@ -91,6 +92,28 @@ tipoElemento Lista<tipoElemento>::buscarElementoPos(int pos)
 	}
 	return -1;//ou lista é vazia, ou posição é maior que quantidade de elementos
 
+}
+template<typename tipoElemento>
+inline tipoElemento * Lista<tipoElemento>::buscarID(int id)
+{
+	if(!listaVazia())
+		return buscar(id, inicio_lista);
+	
+}
+template<typename tipoElemento>
+inline tipoElemento *  Lista<tipoElemento>::buscar(int id, No<tipoElemento> * _no)
+{
+	//condição de parada
+	if (_no->getDado()->getId() == id)
+		return _no->getDado();
+	else if(_no == nullptr)
+	{
+		return nullptr;
+	}
+	else {
+		//chamada recursiva
+		return busca(id, _no->getProximo());
+	}
 }
 template <typename tipoElemento>
 bool Lista<tipoElemento>::listaVazia()
@@ -111,14 +134,14 @@ int Lista<tipoElemento>::quantidadeElementos()
 	return qtd_elementos;
 }
 template <typename tipoElemento>
-tipoElemento Lista<tipoElemento>::obterPrimeiroElemento()
+tipoElemento * Lista<tipoElemento>::obterPrimeiroElemento()
 {
 	if (inicio_lista != nullptr)
 		return inicio_lista->getDado();
 	return -1;
 }
 template <typename tipoElemento>
-tipoElemento Lista<tipoElemento>::obterUltimoElemento()
+tipoElemento * Lista<tipoElemento>::obterUltimoElemento()
 {
 	if (inicio_lista != nullptr) {
 		No<tipoElemento>* aux = inicio_lista;
@@ -128,3 +151,5 @@ tipoElemento Lista<tipoElemento>::obterUltimoElemento()
 	}
 	return -1;
 }
+
+
