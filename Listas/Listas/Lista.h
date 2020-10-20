@@ -90,7 +90,7 @@ tipoElemento * Lista<tipoElemento>::buscarElementoPos(int pos)
 		}
 		return aux->getDado();
 	}
-	return -1;//ou lista é vazia, ou posição é maior que quantidade de elementos
+	return nullptr;//ou lista é vazia, ou posição é maior que quantidade de elementos
 
 }
 template<typename tipoElemento>

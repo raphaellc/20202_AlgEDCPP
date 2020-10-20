@@ -8,7 +8,7 @@ public:
 	
 	//Insira um metodo aqui
 	D * getDado();
-	void setDado(D d); //O que faz esse método. 
+	void setDado(D * d); //O que faz esse método. 
 	//Insira outro metodo aqui
 	No<D> * getProximo();
 	void setProximo(No<D> * prox);
@@ -28,12 +28,12 @@ private:
 };
 
 template <class D>
-D No<D>::getDado()
+D * No<D>::getDado()
 {
 	return dado;
 }
 template <class D>
-void No<D>::setDado(D d)
+void No<D>::setDado(D * d)
 {
 	dado = d;
 }

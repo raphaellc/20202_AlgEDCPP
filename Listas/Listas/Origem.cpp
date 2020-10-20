@@ -1,9 +1,9 @@
 #include "Lista.h"
 #include <iostream>
 #include <list>
-void main() {
+int main() {
 
-	Lista<char> * minha_lista = new Lista<char>;
+	Lista<int> * minha_lista = new Lista<int>;
 	Lista<char> * chars = new Lista<char>;
 	int a, b, c, d;
 	a = 10;
@@ -19,7 +19,7 @@ void main() {
 	minha_lista->removerUltimoElemento();
 
 	std::cout <<"\n removi um elemento: " << minha_lista->quantidadeElementos() << std::endl;
-	minha_lista->inserirLista(14);
+	minha_lista->inserirLista(&d);
 	
 	std::cout << minha_lista->quantidadeElementos() << std::endl;
 	std::cout << "Posicao(0): "<< minha_lista->buscarElementoPos(0) << std::endl; //10
@@ -27,4 +27,6 @@ void main() {
 	std::cout << "Posicao(2): "<< minha_lista->buscarElementoPos(2) << std::endl; //14
 	std::cout << "Posicao(3): "<< minha_lista->buscarElementoPos(3) << std::endl; //-1
 
+	
+	return 0;
 }
