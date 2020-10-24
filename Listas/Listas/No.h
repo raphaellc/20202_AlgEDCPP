@@ -15,10 +15,12 @@ public:
 	void setAnterior(No<D> * _noAnt);
 	No<D> * getAnterior();
 	//A <= B
+
 	bool operator<=(No* na)
 	{
 		return this->dado <= na->getDado();
 	}
+	bool operator==(No* n);
 	//A.<=(B)
 	
 private:
@@ -51,6 +53,11 @@ template<class D>
 inline No<D>* No<D>::getAnterior()
 {
 	return noAnterior;
+}
+template<class D>
+inline bool No<D>::operator==(No * n)
+{
+	return this->dado == n->getDado();
 }
 template <class D>
 void No<D>::setProximo(No<D>* prox)

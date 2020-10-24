@@ -1,10 +1,22 @@
 #include "Lista.h"
 #include <iostream>
 #include <list>
+#include "Objeto.h"
 int main() {
 
 	Lista<int> * minha_lista = new Lista<int>;
-	Lista<char> * chars = new Lista<char>;
+	Lista<Objeto> * objetos = new Lista<Objeto>;
+	Objeto * obj1 = new Objeto();
+	Objeto * obj2 = new Objeto();
+	obj1->setID(1);
+	obj2->setID(2);
+	objetos->inserirLista(obj1);
+	objetos->inserirLista(obj2);
+	objetos->removerUltimoElemento();
+	if (objetos->buscar(obj2) == nullptr) std::cout << "funcionou" << std::endl;
+	if (objetos->buscar(obj1) == obj1)  std::cout << "funcionou" << std::endl;
+	
+	/*
 	int a, b, c, d;
 	a = 10;
 	b = 11;
@@ -27,6 +39,7 @@ int main() {
 	std::cout << "Posicao(2): "<< minha_lista->buscarElementoPos(2) << std::endl; //14
 	std::cout << "Posicao(3): "<< minha_lista->buscarElementoPos(3) << std::endl; //-1
 
-	
+	*/
+	system("pause");
 	return 0;
 }

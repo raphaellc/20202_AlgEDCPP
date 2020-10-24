@@ -9,7 +9,7 @@ public:
 	void inserirLista(tipoElemento * elemento);
 	void removerUltimoElemento();
 	tipoElemento * buscarElementoPos(int pos);
-	tipoElemento * buscarID(int id);
+	tipoElemento * buscar(tipoElemento * tel);
 	bool listaVazia();
 	void percorrerLista(); //vai percorrer todos elementos da lista
 	int quantidadeElementos(); //devolve quantos nos tem na lista
@@ -17,7 +17,7 @@ public:
 	tipoElemento * obterUltimoElemento(); //Devolve o dado do ultimo elemento
 
 private:
-	tipoElemento * buscar(int id, No<tipoElemento> * _no);
+	tipoElemento * buscar(tipoElemento * el, No<tipoElemento> * _no);
 	No<tipoElemento>* inicio_lista;
 	No<tipoElemento>* final_lista;
 	int qtd_elementos;
@@ -65,16 +65,13 @@ void Lista<tipoElemento>::removerUltimoElemento()
 	//se lista vazia não faz nada
 
 	if (inicio_lista != nullptr) {
-		No<tipoElemento>* aux = inicio_lista;
-		No<tipoElemento>* aux_ant = inicio_lista;
-
-		while (aux->getProximo() != nullptr) {
-			aux_ant = aux;
-			aux = aux->getProximo();
-		}
+		No<tipoElemento> * aux;
+		aux = final_lista;
+		final_lista = final_lista->getAnterior();
+		final_lista->setProximo(inicio_lista);
+		inicio_lista->setAnterior(final_lista);
 		//aux está no último nó e aux_ant está no penúltimo
 		delete aux;
-		aux_ant->setProximo(nullptr);
 	}
 	qtd_elementos--;
 }
@@ -94,25 +91,29 @@ tipoElemento * Lista<tipoElemento>::buscarElementoPos(int pos)
 
 }
 template<typename tipoElemento>
-inline tipoElemento * Lista<tipoElemento>::buscarID(int id)
+inline tipoElemento * Lista<tipoElemento>::buscar(tipoElemento * tel)
 {
-	if(!listaVazia())
-		return buscar(id, inicio_lista);
-	
+	if (!listaVazia()) {
+		if (this->quantidadeElementos() == 1) {
+			if (inicio_lista->getDado() == tel) return inicio_lista->getDado();
+		}
+		else
+			return buscar(tel, inicio_lista);
+	}
 }
 template<typename tipoElemento>
-inline tipoElemento *  Lista<tipoElemento>::buscar(int id, No<tipoElemento> * _no)
+inline tipoElemento *  Lista<tipoElemento>::buscar(tipoElemento * el, No<tipoElemento> * _no)
 {
 	//condição de parada
-	if (_no->getDado()->getId() == id)
+	if (_no->getDado() == el)
 		return _no->getDado();
-	else if(_no == nullptr)
+	else if(_no->getProximo() == inicio_lista)
 	{
 		return nullptr;
 	}
 	else {
 		//chamada recursiva
-		return busca(id, _no->getProximo());
+		return buscar(el, _no->getProximo());
 	}
 }
 template <typename tipoElemento>
