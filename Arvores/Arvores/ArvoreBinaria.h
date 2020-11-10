@@ -2,6 +2,7 @@
 template <class T>
 class ArvoreBinaria
 {
+
 public:
 	ArvoreBinaria();
 	~ArvoreBinaria();
@@ -25,3 +26,8 @@ private:
 	void visitarLargura(No<T>* n);
 
 };
+
+template<class T>
+inline ArvoreBinaria<T>::ArvoreBinaria()
+{
+}

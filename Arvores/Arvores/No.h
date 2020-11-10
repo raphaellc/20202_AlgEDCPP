@@ -1,5 +1,4 @@
 #pragma once
-
 template <class T>
 class No
 {
@@ -62,4 +61,3 @@ void No<T>::setDir(No<T>* _noDir)
 {
 	dir = _noDir;
 }
-	
