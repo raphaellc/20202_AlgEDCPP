@@ -1,3 +1,4 @@
+#pragma once
 #include "No.h"
 template <class T>
 class ArvoreBinaria
@@ -29,5 +30,95 @@ private:
 
 template<class T>
 inline ArvoreBinaria<T>::ArvoreBinaria()
+{
+}
+
+template<class T>
+inline ArvoreBinaria<T>::~ArvoreBinaria()
+{
+}
+
+template<class T>
+inline void ArvoreBinaria<T>::inserir(T valor)
+{
+	No<T> *n = new No<T>; 
+}
+
+template<class T>
+inline No<T>* ArvoreBinaria<T>::buscar(T valor)
+{
+	return NULL;
+}
+
+template<class T>
+inline void ArvoreBinaria<T>::deletar(T valor)
+{
+}
+
+template<class T>
+inline void ArvoreBinaria<T>::visitarPreOrdem()
+{
+}
+
+template<class T>
+inline void ArvoreBinaria<T>::visitarCentral()
+{
+}
+
+template<class T>
+inline void ArvoreBinaria<T>::visitarPosOrdem()
+{
+}
+
+template<class T>
+inline void ArvoreBinaria<T>::visitarLargura()
+{
+}
+
+template<class T>
+inline int ArvoreBinaria<T>::altura(No<T>* nodo)
+{
+	return 0;
+}
+
+template<class T>
+inline No<T>* ArvoreBinaria<T>::getRaiz()
+{
+	return NULL;
+}
+
+template<class T>
+inline void ArvoreBinaria<T>::inserir(T valor, No<T>* raiz)
+{
+}
+
+template<class T>
+inline No<T>* ArvoreBinaria<T>::buscar(T valor, No<T>* raiz)
+{
+	return NULL;
+}
+
+template<class T>
+inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz)
+{
+}
+
+template<class T>
+inline void ArvoreBinaria<T>::visitarPreOrdem(No<T>* n)
+{
+}
+
+template<class T>
+inline void ArvoreBinaria<T>::visitarCentral(No<T>* n)
+{
+}
+
+template<class T>
+inline void ArvoreBinaria<T>::visitarPosOrdem(No<T>* n)
+{
+}
+
+template<class T>
+inline void ArvoreBinaria<T>::visitarLargura(No<T>* n)
 {
 }

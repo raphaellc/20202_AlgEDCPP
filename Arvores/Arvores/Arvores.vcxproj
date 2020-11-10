@@ -118,6 +118,9 @@
     <ClInclude Include="ArvoreBinaria.h" />
     <ClInclude Include="No.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Origem.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
