@@ -1,8 +1,7 @@
 #pragma once
 #include <iostream>
-
-
 #include "No.h"
+
 template <class T>
 class ArvoreBinaria
 {
