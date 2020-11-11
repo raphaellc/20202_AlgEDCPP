@@ -63,6 +63,7 @@ template<class T>
 inline void ArvoreBinaria<T>::visitarPreOrdem()
 {
 	visitarPreOrdem(this->getRaiz());
+	cout << "Fim da Arvore.";
 }
 
 template<class T>
@@ -99,7 +100,7 @@ inline void ArvoreBinaria<T>::inserir(T valor, No<T>* _raiz)
 	{
 		No<T> *n = new No<T>;
 		n->setDado(valor);
-		_raiz = n;
+		this->raiz = n;
 	} else
 	{
 		if(valor > _raiz->getDado())
@@ -111,7 +112,7 @@ inline void ArvoreBinaria<T>::inserir(T valor, No<T>* _raiz)
 			{
 				No<T> *n = new No<T>;
 				n->setDado(valor);
-				_raiz->getDir()->setDir(n);
+				_raiz->setDir(n);
 			}
 		}
 
@@ -122,7 +123,7 @@ inline void ArvoreBinaria<T>::inserir(T valor, No<T>* _raiz)
 			else{
 				No<T> *n = new No<T>;
 				n->setDado(valor);
-				_raiz->getEsq()->setEsq(n);
+				_raiz->setEsq(n);
 			}
 		}
 		
@@ -153,7 +154,7 @@ inline void ArvoreBinaria<T>::visitarPreOrdem(No<T>* n)
 	} else
 	{
 		//visita a raiz
-		cout << n << endl;
+		cout << n->getDado() << endl;
 
 		//visita esquerda
 		if(n->getEsq()!=nullptr)
@@ -161,14 +162,11 @@ inline void ArvoreBinaria<T>::visitarPreOrdem(No<T>* n)
 			visitarPreOrdem(n->getEsq());
 		}
 		//visita direita
-		else if(n->getDir()!=nullptr)
+		if(n->getDir()!=nullptr)
 		{
 			visitarPreOrdem(n->getDir());
 		}
-		else
-		{
-			cout << "Fim da Arvore." << endl;
-		}
+		
 	}
 }
 
