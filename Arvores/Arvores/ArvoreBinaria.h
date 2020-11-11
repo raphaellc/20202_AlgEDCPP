@@ -1,4 +1,7 @@
 #pragma once
+#include <iostream>
+
+
 #include "No.h"
 template <class T>
 class ArvoreBinaria
@@ -27,10 +30,12 @@ private:
 	void visitarLargura(No<T>* n);
 
 };
+using namespace std;
 
 template<class T>
 inline ArvoreBinaria<T>::ArvoreBinaria()
 {
+	raiz = nullptr;
 }
 
 template<class T>
@@ -41,7 +46,7 @@ inline ArvoreBinaria<T>::~ArvoreBinaria()
 template<class T>
 inline void ArvoreBinaria<T>::inserir(T valor)
 {
-	No<T> *n = new No<T>; 
+	this->inserir(valor, this->getRaiz());
 }
 
 template<class T>
@@ -58,6 +63,7 @@ inline void ArvoreBinaria<T>::deletar(T valor)
 template<class T>
 inline void ArvoreBinaria<T>::visitarPreOrdem()
 {
+	visitarPreOrdem(this->getRaiz());
 }
 
 template<class T>
@@ -84,12 +90,48 @@ inline int ArvoreBinaria<T>::altura(No<T>* nodo)
 template<class T>
 inline No<T>* ArvoreBinaria<T>::getRaiz()
 {
-	return NULL;
+	return raiz;
 }
 
 template<class T>
-inline void ArvoreBinaria<T>::inserir(T valor, No<T>* raiz)
+inline void ArvoreBinaria<T>::inserir(T valor, No<T>* _raiz)
 {
+	if(_raiz == nullptr)
+	{
+		No<T> *n = new No<T>;
+		n->setDado(valor);
+		_raiz = n;
+	} else
+	{
+		if(valor > _raiz->getDado())
+		{
+			if(_raiz->getDir() != nullptr)
+			{
+				inserir(valor, _raiz->getDir());
+			}else
+			{
+				No<T> *n = new No<T>;
+				n->setDado(valor);
+				_raiz->getDir()->setDir(n);
+			}
+		}
+
+		else if(valor < _raiz->getDado()){
+			if(_raiz->getEsq() != nullptr){
+				inserir(valor, _raiz->getEsq());
+			}
+			else{
+				No<T> *n = new No<T>;
+				n->setDado(valor);
+				_raiz->getEsq()->setEsq(n);
+			}
+		}
+		
+		else
+		{
+			cout << "O dado sugerido já pertence à ávare.\n";
+		}
+	}
 }
 
 template<class T>
@@ -106,6 +148,29 @@ inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz)
 template<class T>
 inline void ArvoreBinaria<T>::visitarPreOrdem(No<T>* n)
 {
+	if(n == nullptr)
+	{
+		cout<<"A árvore está vazia.";
+	} else
+	{
+		//visita a raiz
+		cout << n << endl;
+
+		//visita esquerda
+		if(n->getEsq()!=nullptr)
+		{
+			visitarPreOrdem(n->getEsq());
+		}
+		//visita direita
+		else if(n->getDir()!=nullptr)
+		{
+			visitarPreOrdem(n->getDir());
+		}
+		else
+		{
+			cout << "Fim da Arvore." << endl;
+		}
+	}
 }
 
 template<class T>
