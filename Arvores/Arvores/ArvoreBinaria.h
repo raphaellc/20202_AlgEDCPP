@@ -10,7 +10,7 @@ public:
 	ArvoreBinaria();
 	~ArvoreBinaria();
 	void inserir(T valor);
-	No<T>* buscar(T valor);
+	bool buscar(T valor);
 	void deletar(T valor);
 	void visitarPreOrdem();
 	void visitarCentral();
@@ -49,9 +49,10 @@ inline void ArvoreBinaria<T>::inserir(T valor)
 }
 
 template<class T>
-inline No<T>* ArvoreBinaria<T>::buscar(T valor)
+inline bool ArvoreBinaria<T>::buscar(T valor)
 {
-	return this->buscar(valor, this->getRaiz());
+	if(this->buscar(valor, this->getRaiz()) != nullptr) return true;
+	else return false;
 }
 
 template<class T>
@@ -141,27 +142,31 @@ inline void ArvoreBinaria<T>::inserir(T valor, No<T>* _raiz)
 }
 
 template<class T>
-inline No<T>* ArvoreBinaria<T>::buscar(T valor, No<T>* raiz)
+inline No<T> * ArvoreBinaria<T>::buscar(T valor, No<T>* raiz)
 {
-	
 	if(raiz == nullptr)
 	{
-		cout<<"A árvore está vazia.";
-	} else
+		cout<<"A árvore está vazia ou não foi encontrado";
+		return nullptr;
+	} 
+	else
 	{
 		//Verifica a raiz
-
-		//visita esquerda
-		if(raiz->getEsq()!=nullptr)
-		{
-			buscarvalor( valor, raiz->getEsq());
-		}
-		//visita direita
-		if(raiz->getDir()!=nullptr)
-		{
-			buscarvalor(valor,raiz->getDir());
-		}
+		if(raiz->getDado() == valor) return raiz;
 		
+		else 
+		{
+			//Verifica esquerda
+			if(raiz->getDado() > valor)
+			{
+				return buscar( valor, raiz->getEsq());
+			}
+			//Verifica direita
+			else 
+			{
+				return buscar(valor, raiz->getDir());
+			}
+		}
 	}
 }
 
@@ -170,6 +175,7 @@ inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz)
 {
 	No<T> * pai = nullptr;
 	No<T> * atual = nullptr;
+	//for(;atual != null )
 
 }
 
@@ -232,7 +238,7 @@ inline void ArvoreBinaria<T>::visitarPosOrdem(No<T>* n)
 	{
 		cout << "A árvore está vazia.";
 	}
-	else 
+	else
 	{
 		//visita esquerda
 		if (n->getEsq() != nullptr)
@@ -248,9 +254,8 @@ inline void ArvoreBinaria<T>::visitarPosOrdem(No<T>* n)
 
 		//visita a raiz
 		cout << n->getDado() << endl;
+	}
 }
 
 template<class T>
-inline void ArvoreBinaria<T>::visitarLargura(No<T>* n)
-{
-}
+inline void ArvoreBinaria<T>::visitarLargura(No<T>* n){}
