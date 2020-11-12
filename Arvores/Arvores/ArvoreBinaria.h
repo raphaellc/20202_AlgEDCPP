@@ -51,12 +51,14 @@ inline void ArvoreBinaria<T>::inserir(T valor)
 template<class T>
 inline No<T>* ArvoreBinaria<T>::buscar(T valor)
 {
-	return NULL;
+	return this->buscar(valor, this->getRaiz());
 }
 
 template<class T>
 inline void ArvoreBinaria<T>::deletar(T valor)
 {
+	deletar(valor, raiz);
+
 }
 
 template<class T>
@@ -69,11 +71,15 @@ inline void ArvoreBinaria<T>::visitarPreOrdem()
 template<class T>
 inline void ArvoreBinaria<T>::visitarCentral()
 {
+	visitarCentralOrdem(this->getRaiz());
+	cout << "Fim da Arvore.";
 }
 
 template<class T>
 inline void ArvoreBinaria<T>::visitarPosOrdem()
 {
+	visitarPosOrdem(this->getRaiz());
+	cout << "Fim da Arvore.";
 }
 
 template<class T>
@@ -137,12 +143,34 @@ inline void ArvoreBinaria<T>::inserir(T valor, No<T>* _raiz)
 template<class T>
 inline No<T>* ArvoreBinaria<T>::buscar(T valor, No<T>* raiz)
 {
-	return NULL;
+	
+	if(raiz == nullptr)
+	{
+		cout<<"A árvore está vazia.";
+	} else
+	{
+		//Verifica a raiz
+
+		//visita esquerda
+		if(raiz->getEsq()!=nullptr)
+		{
+			buscarvalor( valor, raiz->getEsq());
+		}
+		//visita direita
+		if(raiz->getDir()!=nullptr)
+		{
+			buscarvalor(valor,raiz->getDir());
+		}
+		
+	}
 }
 
 template<class T>
 inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz)
 {
+	No<T> * pai = nullptr;
+	No<T> * atual = nullptr;
+
 }
 
 template<class T>
@@ -172,12 +200,54 @@ inline void ArvoreBinaria<T>::visitarPreOrdem(No<T>* n)
 
 template<class T>
 inline void ArvoreBinaria<T>::visitarCentral(No<T>* n)
-{
+{if (n == nullptr)
+	{
+		cout << "A árvore está vazia.";
+	}
+
+	else
+	{
+		//visita esquerda
+		if (n->getEsq() != nullptr)
+		{
+			visitarCentral(n->getEsq());
+		}
+
+		//visita a raiz
+		cout << n->getDado() << endl;
+
+		//visita direita
+		if (n->getDir() != nullptr)
+		{
+			visitarCentral(n->getDir());
+		}
+
+	}
 }
 
 template<class T>
 inline void ArvoreBinaria<T>::visitarPosOrdem(No<T>* n)
 {
+	if (n == nullptr)
+	{
+		cout << "A árvore está vazia.";
+	}
+	else 
+	{
+		//visita esquerda
+		if (n->getEsq() != nullptr)
+		{
+			visitarPosOrdem(n->getEsq());
+		}
+
+		//visita direita
+		if (n->getDir() != nullptr)
+		{
+			visitarPosOrdem(n->getDir());
+		}
+
+		//visita a raiz
+		cout << n->getDado() << endl;
 }
 
 template<class T>
