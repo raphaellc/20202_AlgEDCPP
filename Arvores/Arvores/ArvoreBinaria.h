@@ -219,7 +219,7 @@ inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz, No<T>* pai )
 			{
 				if(pai == nullptr)
 				{
-					//
+					//Deletar raiz com 2 filhos!!!
 				}
 				else if(raiz->getDado() < pai->getDado())
 				{
