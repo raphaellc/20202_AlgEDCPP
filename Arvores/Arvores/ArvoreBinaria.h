@@ -107,6 +107,7 @@ inline No<T>* ArvoreBinaria<T>::getRaiz()
 template<class T>
 inline void ArvoreBinaria<T>::setRaiz(No<T>* novaRaiz)
 {
+	this->raiz = novaRaiz;
 }
 
 template<class T>
@@ -222,7 +223,8 @@ inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz, No<T>* pai )
 				}
 				else if(raiz->getDado() < pai->getDado())
 				{
-
+					pai->setEsq(raiz->getDir());
+					pai->getEsq()->setEsq(raiz->getEsq());					
 				}
 				else
 				{
@@ -233,18 +235,24 @@ inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz, No<T>* pai )
 			//Caso nodo tenha um filho
 			else
 			{
+				if(pai == nullptr)
+				{
+					delete raiz;
+
+					if(raiz->getEsq() != nullptr)
+					{
+						setRaiz(raiz->getEsq());
+	  		 	  	}
+					else setRaiz(raiz->getDir());
+					
+					return 0;
+				}
+
 				if(raiz->getDado() < pai->getDado())
 				{
-					if(pai == nullptr)
-					{
-						delete raiz;
-
-						setRaiz(raiz);
-						return 0;
-					}
-					else if(raiz->getEsq() != nullptr)
-					{
-						pai->setEsq(raiz->getEsq());						
+					if(raiz->getEsq() != nullptr)
+					{		
+						pai->setEsq(raiz->getEsq());
 					}
 					else
 					{
@@ -253,14 +261,7 @@ inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz, No<T>* pai )
 				}
 				else
 				{
-					if(pai == nullptr)
-					{
-						delete raiz;
-
-						setRaiz(raiz);
-						return 0;
-					}
-					else if(raiz->getEsq() != nullptr)
+					if(raiz->getEsq() != nullptr)
 					{
 						pai->setDir(raiz->getEsq());
 					}
