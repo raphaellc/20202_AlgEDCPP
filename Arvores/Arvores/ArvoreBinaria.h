@@ -184,7 +184,7 @@ inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz, No<T>* pai )
 {	
 	if(raiz == nullptr)
 	{
-		break;
+		return;
 	} 
 	else
 	{
@@ -199,7 +199,7 @@ inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz, No<T>* pai )
 				if(pai == nullptr)
 				{
 					delete raiz;
-					break;
+					return;
 				}
 				//atualizar Esq ou Dir do pai
 				else if(raiz->getDado() < pai->getDado())
@@ -246,7 +246,7 @@ inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz, No<T>* pai )
 					else setRaiz(raiz->getDir());
 					delete raiz;
 
-					break;
+					return;
 				}
 
 				if(raiz->getDado() < pai->getDado())
