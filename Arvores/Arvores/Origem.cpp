@@ -15,24 +15,42 @@ int main()
 	ab->inserir(20);
 	ab->inserir(5);
 	ab->inserir(3);
+	ab->inserir(4);
+	ab->inserir(21);
 	ab->visitarPreOrdem();
-	
+	ab->deletar(5);	
+	ab->visitarPreOrdem();
+	ab->deletar(3);	
+	ab->visitarPreOrdem();
+	ab->deletar(20);	
+	ab->visitarPreOrdem();
 	cout << endl;
-	if(ab->buscar(10)) cout << "Encontrado" << endl;
-	else cout << "Não Encontrado" << endl;
+
+	/*
+	       10
+		  /	 \
+	     5    20
+		/ \
+	   3   4
+	       
+		   |
+		   |
+		   |
+		   V
+		   10
+		  /	 \
+	     4    20
+		/ 
+	   3   
+	       |
+		   |
+		   |
+		   V
+
+	*/
 	
-	if(ab->buscar(3)) cout << "Encontrado" << endl;
-	else cout << "Não Encontrado" << endl;
 
-	if(ab->buscar(20)) cout << "Encontrado" << endl;
-	else cout << "Não Encontrado" << endl;
 
-	if(ab->buscar(5)) cout << "Encontrado" << endl;
-	else cout << "Não Encontrado" << endl;
-
-	if(ab->buscar(4)) cout << "Encontrado" << endl;
-	else cout << "Não Encontrado" << endl;
-	
 	system("pause");
 	return 0;
 }

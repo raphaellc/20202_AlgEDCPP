@@ -184,7 +184,7 @@ inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz, No<T>* pai )
 {	
 	if(raiz == nullptr)
 	{
-		return nullptr;
+		break;
 	} 
 	else
 	{
@@ -199,7 +199,7 @@ inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz, No<T>* pai )
 				if(pai == nullptr)
 				{
 					delete raiz;
-					return 0;
+					break;
 				}
 				//atualizar Esq ou Dir do pai
 				else if(raiz->getDado() < pai->getDado())
@@ -219,7 +219,7 @@ inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz, No<T>* pai )
 			{
 				if(pai == nullptr)
 				{
-					
+					//
 				}
 				else if(raiz->getDado() < pai->getDado())
 				{
@@ -228,8 +228,10 @@ inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz, No<T>* pai )
 				}
 				else
 				{
-
+					pai->setDir(raiz->getEsq());
+					pai->getDir()->setDir(raiz->getDir());
 				}
+				delete raiz;
 			}
 
 			//Caso nodo tenha um filho
@@ -237,15 +239,14 @@ inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz, No<T>* pai )
 			{
 				if(pai == nullptr)
 				{
-					delete raiz;
-
 					if(raiz->getEsq() != nullptr)
 					{
 						setRaiz(raiz->getEsq());
 	  		 	  	}
 					else setRaiz(raiz->getDir());
-					
-					return 0;
+					delete raiz;
+
+					break;
 				}
 
 				if(raiz->getDado() < pai->getDado())
