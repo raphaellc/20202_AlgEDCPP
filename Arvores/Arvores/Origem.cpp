@@ -24,6 +24,7 @@ int main()
 	ab->visitarPreOrdem();
 	ab->deletar(20);	
 	ab->visitarPreOrdem();
+	
 	cout << endl;
 
 	/*

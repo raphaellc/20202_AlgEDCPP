@@ -70,21 +70,21 @@ template<class T>
 inline void ArvoreBinaria<T>::visitarPreOrdem()
 {
 	visitarPreOrdem(this->getRaiz());
-	cout << "Fim da Arvore.";
+	cout << "Fim da Arvore."<<endl;
 }
 
 template<class T>
 inline void ArvoreBinaria<T>::visitarCentral()
 {
 	visitarCentralOrdem(this->getRaiz());
-	cout << "Fim da Arvore.";
+	cout << "Fim da Arvore."<<endl;
 }
 
 template<class T>
 inline void ArvoreBinaria<T>::visitarPosOrdem()
 {
 	visitarPosOrdem(this->getRaiz());
-	cout << "Fim da Arvore.";
+	cout << "Fim da Arvore."<<endl;
 }
 
 template<class T>
