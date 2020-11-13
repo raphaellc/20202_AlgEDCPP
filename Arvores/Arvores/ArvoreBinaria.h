@@ -18,11 +18,12 @@ public:
 	void visitarLargura();
 	int altura(No<T> *nodo);
 	No<T>* getRaiz();
+	void setRaiz(No<T>* novaRaiz);
 private:
 	No<T> *raiz;
 	void inserir(T valor, No<T>* raiz);
 	No<T>* buscar(T valor, No<T>* raiz);
-	void deletar(T valor, No<T>* raiz);
+	void deletar(T valor, No<T>* raiz, No<T>* pai);
 	void visitarPreOrdem(No<T>* n);
 	void visitarCentral(No<T>* n);
 	void visitarPosOrdem(No<T>* n);
@@ -58,8 +59,11 @@ inline bool ArvoreBinaria<T>::buscar(T valor)
 template<class T>
 inline void ArvoreBinaria<T>::deletar(T valor)
 {
-	deletar(valor, raiz);
+	//Exclusão de uma folha
+	//Exclusão de um nó com um filho
+	//Exclusão de um nó com dois filhos
 
+	deletar(valor, raiz, nullptr);
 }
 
 template<class T>
@@ -98,6 +102,11 @@ template<class T>
 inline No<T>* ArvoreBinaria<T>::getRaiz()
 {
 	return raiz;
+}
+
+template<class T>
+inline void ArvoreBinaria<T>::setRaiz(No<T>* novaRaiz)
+{
 }
 
 template<class T>
@@ -146,7 +155,6 @@ inline No<T> * ArvoreBinaria<T>::buscar(T valor, No<T>* raiz)
 {
 	if(raiz == nullptr)
 	{
-		cout<<"A árvore está vazia ou não foi encontrado";
 		return nullptr;
 	} 
 	else
@@ -171,12 +179,113 @@ inline No<T> * ArvoreBinaria<T>::buscar(T valor, No<T>* raiz)
 }
 
 template<class T>
-inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz)
-{
-	No<T> * pai = nullptr;
-	No<T> * atual = nullptr;
-	//for(;atual != null )
+inline void ArvoreBinaria<T>::deletar(T valor, No<T>* raiz, No<T>* pai )
+{	
+	if(raiz == nullptr)
+	{
+		return nullptr;
+	} 
+	else
+	{
+		//Verifica a raiz
+		if(raiz->getDado() == valor)
+		{
+			//Deletar
 
+			//Caso seja nodo seja folha
+			if(raiz->getEsq() == nullptr && raiz->getDir() == nullptr)
+			{
+				if(pai == nullptr)
+				{
+					delete raiz;
+					return 0;
+				}
+				//atualizar Esq ou Dir do pai
+				else if(raiz->getDado() < pai->getDado())
+				{
+					pai->setEsq(nullptr);
+				}
+				else
+				{
+					pai->setDir(nullptr);
+				}
+				delete raiz;
+
+
+			}
+			//Caso nodo tenha dois filhos
+			else if (raiz->getEsq() != nullptr && raiz->getDir() != nullptr)
+			{
+				if(pai == nullptr)
+				{
+					
+				}
+				else if(raiz->getDado() < pai->getDado())
+				{
+
+				}
+				else
+				{
+
+				}
+			}
+
+			//Caso nodo tenha um filho
+			else
+			{
+				if(raiz->getDado() < pai->getDado())
+				{
+					if(pai == nullptr)
+					{
+						delete raiz;
+
+						setRaiz(raiz);
+						return 0;
+					}
+					else if(raiz->getEsq() != nullptr)
+					{
+						pai->setEsq(raiz->getEsq());						
+					}
+					else
+					{
+						pai->setEsq(raiz->getDir());
+					}					
+				}
+				else
+				{
+					if(pai == nullptr)
+					{
+						delete raiz;
+
+						setRaiz(raiz);
+						return 0;
+					}
+					else if(raiz->getEsq() != nullptr)
+					{
+						pai->setDir(raiz->getEsq());
+					}
+					else
+					{
+						pai->setDir(raiz->getDir());
+					}					
+				}
+				delete raiz;
+			}
+		}
+		else 
+		{			
+			//Verifica esquerda
+			if(raiz->getDado() > valor)
+			{
+				return deletar( valor, raiz->getEsq(), raiz);	
+			}
+			//Verifica direita
+			else 
+			{
+				return deletar(valor, raiz->getDir(), raiz);
+			}
+		}
+	}
 }
 
 template<class T>
@@ -259,3 +368,5 @@ inline void ArvoreBinaria<T>::visitarPosOrdem(No<T>* n)
 
 template<class T>
 inline void ArvoreBinaria<T>::visitarLargura(No<T>* n){}
+
+

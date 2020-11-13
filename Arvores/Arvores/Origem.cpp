@@ -18,11 +18,20 @@ int main()
 	ab->visitarPreOrdem();
 	
 	cout << endl;
-	if(ab->buscar(20)) cout << "Encontrado" << endl;
+	if(ab->buscar(10)) cout << "Encontrado" << endl;
 	else cout << "Não Encontrado" << endl;
 	
-	if(ab->buscar(4)) cout << "Econtrado" << endl;
-	else cout << "Não Econtrado" << endl;
+	if(ab->buscar(3)) cout << "Encontrado" << endl;
+	else cout << "Não Encontrado" << endl;
+
+	if(ab->buscar(20)) cout << "Encontrado" << endl;
+	else cout << "Não Encontrado" << endl;
+
+	if(ab->buscar(5)) cout << "Encontrado" << endl;
+	else cout << "Não Encontrado" << endl;
+
+	if(ab->buscar(4)) cout << "Encontrado" << endl;
+	else cout << "Não Encontrado" << endl;
 	
 	system("pause");
 	return 0;
